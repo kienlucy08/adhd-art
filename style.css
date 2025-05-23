@@ -1,0 +1,341 @@
+/* Our default values set as CSS variables */
+:root {
+  --color-bg: #000000;
+  --color-text-main: #000000;
+  --color-primary: #d6d6d4;
+  --wrapper-height: 87vh;
+  --image-max-width: 300px;
+  --image-margin: 3rem;
+  --font-family: "HK Grotesk";
+  --font-family-header: "HK Grotesk";
+}
+
+/* Import fonts */
+@font-face {
+  font-family: HK Grotesk;
+  src: url("https://cdn.glitch.me/605e2a51-d45f-4d87-a285-9410ad350515%2FHKGrotesk-Regular.otf?v=1603136326027")
+    format("opentype");
+}
+@font-face {
+  font-family: HK Grotesk;
+  font-weight: bold;
+  src: url("https://cdn.glitch.me/605e2a51-d45f-4d87-a285-9410ad350515%2FHKGrotesk-Bold.otf?v=1603136323437")
+    format("opentype");
+}
+
+body {
+  font-family: HK Grotesk;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(210, 177, 251, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  overflow: scroll;
+}
+
+/* Page structure */
+.wrapper {
+  min-height: var(--wrapper-height);
+  display: grid;
+  place-items: center;
+  margin: 0 1rem;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Very light scaling for our illustration */
+.title {
+  color: #000000;
+  font-family: HK Grotesk;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 100px;
+  line-height: 105%;
+  margin: 0;
+}
+
+/* Very light scaling for our illustration */
+.illustration {
+  max-width: 100%;
+  max-height: var(--image-max-width);
+  margin-top: var(--image-margin);
+}
+
+/* Instructions */
+.instructions {
+  margin: 1rem auto 0;
+}
+
+/* container element to contain all things on the page */
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  background: linear-gradient(-45deg, #1b702c, #2a58b5, #743cc2, #2f1554);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+}
+
+button,
+input {
+  font-family: inherit;
+  font-size: 100%;
+  background: #ffffff;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  transition: 500ms;
+  right: 10px;
+}
+
+h1 {
+  color: #ffffff;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400px;
+}
+
+/* article for the text scroll that contains the paragraph*/
+article {
+  margin: 1em auto;
+  overflow: hidden;
+  position: relative;
+  min-height: 4em;
+}
+
+/* Interactive image */
+.illustration:active {
+  transform: translateY(5px);
+}
+
+.dipped {
+  transform: translateY(5px);
+}
+
+/* pulsing circle parameters*/
+#pulsating-circle {
+  width: 50px;
+  height: 50px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  animation: pulse 2s infinite alternate;
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* shuffling triangle parameters*/
+#shuffling-triangle {
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-bottom: 173.2px solid #ffffff;
+  animation: shuffle 2s infinite linear;
+  left: 100px;
+  position: absolute;
+  bottom: 100px;
+  cursor: move;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  text-align: center;
+}
+
+/* random square parameters*/
+#random-square {
+  width: 200px;
+  height: 200px;
+  background-color: #ffffff;
+  cursor: grab;
+  right: 100px;
+  top: 100px;
+  position: absolute;
+}
+
+/* scroll left text that scrolls the text to the left in uppercase*/
+/* used an example tutorial online for scrolling text*/
+.example-left {
+  -webkit-animation: leftmove 4s linear infinite;
+  white-space: nowrap;
+  animation: leftmove 4s linear infinite alternate;
+  position: absolute;
+  text-transform: uppercase;
+}
+
+/* scroll right text that scrolls the text to the right in uppercase*/
+.example-right {
+  white-space: nowrap;
+  position: absolute;
+  padding: 10px 10px;
+  margin: 1rem;
+  opacity: 0.6;
+  text-transform: uppercase;
+  -webkit-animation: rightmove 4s linear infinite;
+  animation: rightmove 4s linear infinite alternate;
+}
+
+/*fades the text in and out of the screen once it hits the edge*/
+.early {
+  animation: fadeIn ease-in 3;
+  animation-fill-mode: forwards;
+  animation-duration: 3s;
+  animation-delay: 1.5s;
+}
+
+/*square parameters*/
+.square {
+  width: 50px;
+  height: 50px;
+  margin: 0px;
+  background-color: #ffffff;
+  position: fixed;
+  animation: bounce 5s infinite alternate;
+}
+
+/*hidden element which contains the text element*/
+#hidden-element-center {
+  display: none;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  margin: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: none;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/*shuffle keyframes used by triangle*/
+@keyframes shuffle {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(50px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(-50px);
+  }
+}
+
+/*bounce key frame used by squares*/
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(calc(100vw - 50px), 0);
+  }
+  50% {
+    transform: translate(calc(100vw - 50px), calc(100vh - 50px));
+  }
+  75% {
+    transform: translate(0, calc(100vh - 50px));
+  }
+}
+
+/*pulse key frame used by circle*/
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(5);
+  }
+}
+
+/* leftmove that move the text across the screen to the left*/
+@-webkit-keyframes leftmove {
+  from {
+    left: 0;
+  }
+  to {
+    left: -140px;
+  }
+}
+
+@keyframes leftmove {
+  from {
+    left: 0;
+  }
+  to {
+    left: -140px;
+  }
+}
+
+/* rightmove that move the text across the screen to the right*/
+@-webkit-keyframes rightmove {
+  from {
+    right: 0;
+  }
+  to {
+    right: -140px;
+  }
+}
+
+@keyframes rightmove {
+  from {
+    right: 0;
+  }
+  to {
+    right: -140px;
+  }
+}
+
+/* keyframes for the opacity*/
+@keyframes early {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Links that open files in the editor */
+.fileopener {
+  cursor: pointer;
+  font-weight: bold;
+  border-bottom: 3px solid var(--color-primary);
+  color: var(--color-secondary);
+}
+.fileopener:hover {
+  border-bottom: 3px solid var(--color-secondary);
+}
